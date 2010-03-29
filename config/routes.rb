@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
   
-  map.resources :pads
+  # map.resources :pads
   
   map.root :controller => "home"
 

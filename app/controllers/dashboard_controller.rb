@@ -1,4 +1,4 @@
-class PadsController < ApplicationController
+class DashboardController < ApplicationController
   def index
     @pads = Pad.all(:order => "created_at DESC")
     respond_to do |format|

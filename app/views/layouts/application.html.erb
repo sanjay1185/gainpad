@@ -7,12 +7,24 @@
     <%= yield(:head) %>
   </head>
   <body>
+
+    
     <% if logged_in? %>
-      Welcome <%=h current_user.email %>! Not you?
-      <%= link_to "Log out", logout_path %>
+      Welcome <%=h current_user.email %>
+      <ul id="user-menu">
+        <li><%= link_to "Log out", logout_path %></li>
+      </ul>
     <% else %>
-      <%= link_to "Sign up", signup_path %> or
-      <%= link_to "log in", login_path %>.
+      <ul id="public-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/tour">Tour</a></li>
+        <li><a href="/goodies">Goodies</a></li>
+      </ul>
+    
+      <ul id="user-menu">
+        <li><%= link_to "Sign up", signup_path %></li>
+        <li><%= link_to "Log in", login_path %></li>
+      </ul>
     <% end %>
     
     <div id="container">
@@ -26,5 +38,7 @@
       
       <%= yield %>
     </div>
+    
+    <div id="footer">Copyright &copy; 2010 Idiles Systems. All rights reserved.</div>
   </body>
 </html>
