@@ -1,13 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
-  map.signup 'signup', :controller => 'users', :action => 'new'
-  map.logout 'logout', :controller => 'sessions', :action => 'destroy'
-  map.login 'login', :controller => 'sessions', :action => 'new'
-  map.resources :sessions
-
   map.resources :users
 
-  # The priority is based upon order of creation: first created -> highest priority.
-
+  map.resource :session
+  
+  map.resources :users,:member=>{:suspend =>:put,:unsuspend=>:put,:purge=>:delete}
+map.activate '/activate/:activation_code', :controller  => 'users', :action => 'activate'
+map.signup '/signup', :controller  => 'users', :action => 'new'
+map.login '/login', :controller => 'sessions', :action => 'new'
+map.logout '/logout', :controller => 'sessions', :action => 'destroy' 
+ # The priority is based upon order of creation: first created -> highest priority.
+map.root :controller => "sessions",:action=>"new"
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
@@ -41,10 +43,6 @@ ActionController::Routing::Routes.draw do |map|
   # map.root :controller => "welcome"
 
   # See how all your routes lay out with "rake routes"
-  
-  # map.resources :pads
-  
-  map.root :controller => "home"
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
