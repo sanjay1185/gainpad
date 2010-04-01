@@ -1,15 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :users
+map.resources :users
 
-  map.resource :session
-  
-  map.resources :users,:member=>{:suspend =>:put,:unsuspend=>:put,:purge=>:delete}
-map.activate '/activate/:activation_code', :controller  => 'users', :action => 'activate'
-map.signup '/signup', :controller  => 'users', :action => 'new'
-map.login '/login', :controller => 'sessions', :action => 'new'
-map.logout '/logout', :controller => 'sessions', :action => 'destroy' 
- # The priority is based upon order of creation: first created -> highest priority.
-map.root :controller => "sessions",:action=>"new"
+map.resource :session
+map.resources :users, :member => { :suspend   => :put,
+                                     :unsuspend => :put,
+                                     :purge     => :delete }
+
+map.activate '/activate/:activation_code',:controller=>'users',:action=>'activate'
+map.signup '/signup',:controller=>'users',:action=>'new'
+map.login '/login',:controller=>'sessions',:action=>'new'
+map.logout '/logout',:controller=>'sessions',:action=>'destroy'
+  # The priority is based upon order of creation: first created -> highest priority.
+map.root :controller=>'sessions',:action=>'new'
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action

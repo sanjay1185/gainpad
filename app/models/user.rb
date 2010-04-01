@@ -2,7 +2,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password
- 
+
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :password, :password_confirmation
 
-  acts_as_state_machine :initial => :pending, :column => :state
+  acts_as_state_machine :initial => :pending
   state :passive
   state :pending, :enter => :make_activation_code
   state :active,  :enter => :do_activate
