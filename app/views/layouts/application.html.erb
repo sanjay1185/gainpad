@@ -13,7 +13,8 @@
     <div style="position:absolute;top:5px;right:5px;">
     <% if logged_in? %>
       Welcome <%=h current_user.email %>      
-       <%= link_to "Log out", logout_path %> 
+       <%= link_to "Settings" %> |
+       <%= link_to "Log out", logout_path %>
     <% else %>      
         <a href="/">Home</a> 
         | <a href="/tour">Tour</a>
