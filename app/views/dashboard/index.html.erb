@@ -1,4 +1,4 @@
 <%#= render :partial => @pads %>
 <div>
-<%=button_to "New Pad",:action=>"new"%>
+<%=button_to "New Pad",:controller=>"pad",:action=>"new",:id=>@user.id%>
 </div>

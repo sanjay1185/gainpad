@@ -9,7 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100401061347) do
+ActiveRecord::Schema.define(:version => 20100401115006) do
+
+  create_table "metric_records", :force => true do |t|
+    t.integer  "metric_id"
+    t.float    "value",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "metrics", :force => true do |t|
+    t.string   "title",                              :null => false
+    t.string   "description"
+    t.integer  "pad_id"
+    t.string   "data_type",   :default => "Integer"
+    t.string   "prefix"
+    t.string   "postfix"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pads", :force => true do |t|
     t.text     "title"

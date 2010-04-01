@@ -1,0 +1,40 @@
+<div>
+  <h1><%=  %></h1>
+  <p>
+  <label for="pad_title">Title</label><br>
+   <%= f.text_field :title %><br>
+     <small class="help_text">Example: Small Business Marketing</small>
+  </p>
+  <p>
+    <label for="metrics">Metrics</label>
+  </p>
+  <%fields_for @metric do |e|%>
+  <fieldset style="">
+    <p>
+      <label for="title">Title<font color="red">*</font></label><br>
+        <%= e.text_field :title %><br>
+          <small class="help_text">Example: Twitter</small>
+    </p>
+    <p>
+      <label for="description">Description</label><br>
+        <%= e.text_area :description,:cols=>30,:rows=>5%><br>
+          <small class="help_text">A very short description. Example: Number of new twitter followers</small>
+    </p>
+    <p>
+      <label for="data_type">Data Type<font color="red">*</font></label><br>
+        <%= e.select :data_type, { "Integer" => "Integer", "Float" => "Float"}%><br>
+          <small class="help_text">Type of data that will be entered.</small>
+    </p>
+    <p>
+      <label for="dislay_prefix">Display Prefix</label><br>
+      <%=e.text_field :prefix%><br>
+        <small class="help_text">What should be displayed before the value? Example: $, </small>
+    </p>
+    <p>
+       <label for="dislay_prefix">Display Postfix</label><br>
+      <%=e.text_field :postfix%><br>
+        <small class="help_text">What should be displayed after the value? Example: EUR, hours, items, users</small>
+    </p>
+  </fieldset>
+  <%end%>
+</div>

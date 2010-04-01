@@ -1,0 +1,6 @@
+<h3>New Pad</h3>
+<%form_for :pad do |f|%>
+<%=render :partial=>"pad", :locals=>{:f=>f}%>
+<br>
+<%=submit_tag "Create Pad"%>
+<%end%>

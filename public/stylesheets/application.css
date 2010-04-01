@@ -11,6 +11,9 @@ a {
   color: #0000FF;
 }
 
+small.help_text{
+    color:gray
+}
 .clear {
   clear: both;
   height: 0;
@@ -68,4 +71,11 @@ a {
 #error-explanation ul li {
   font-size: 12px;
   list-style: disc;
+}
+div#Footer {
+ color:#666666;
+ font-size:10px;
+ line-height:1.2em;
+ text-align:left;
+ padding:2px
 }
