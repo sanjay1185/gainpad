@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   before_filter :find_user
 
   def index
-
+   @pads=@user.pads
   end
 
   def new

@@ -1,4 +1,8 @@
-<%#= render :partial => @pads %>
+<table>
+<% for pad in @pads  %>
+<tr><td><%=pad.title%></td><td><%=link_to "edit",:action=>"edit",:controller=>"pad",:id=>pad.id%></td></tr>
+<%end%>
+</table>
 <div>
-<%=button_to "New Pad",:controller=>"pad",:action=>"new",:id=>@user.id%>
+<%=link_to "New Pad",{:controller=>"pad",:action=>"new"},{}%>
 </div>

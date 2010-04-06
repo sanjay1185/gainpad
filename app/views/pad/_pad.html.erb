@@ -1,14 +1,18 @@
 <div>
   <h1><%=  %></h1>
   <p>
-  <label for="pad_title">Title</label><br>
+  <label for="pad_title">Pad Title</label><br>
    <%= f.text_field :title %><br>
      <small class="help_text">Example: Small Business Marketing</small>
   </p>
+    
   <p>
     <label for="metrics">Metrics</label>
   </p>
-  <%fields_for @metric do |e|%>
+  <div id="metric_list"><%=render :partial=>"metrics"%></div>
+  <input id="metric_toggle" type="button" name="Add Metric" value="Add Metric" onClick="toggleMetrics('metric_form');this.style.display='none'"><br>
+    <div id="metric_form" style="display:none">
+  <% remote_form_for :metric ,@metric,:url => {:update=>"metric_list", :action => "create",:id=>@pad  } do |e|%>
   <fieldset style="">
     <p>
       <label for="title">Title<font color="red">*</font></label><br>
@@ -35,6 +39,7 @@
       <%=e.text_field :postfix%><br>
         <small class="help_text">What should be displayed after the value? Example: EUR, hours, items, users</small>
     </p>
+    <%= submit_tag "Create Metric"%> <%=link_to "Cancel"%>
   </fieldset>
-  <%end%>
+  <%end%></div>
 </div>
