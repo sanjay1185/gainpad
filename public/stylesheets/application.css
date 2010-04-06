@@ -79,3 +79,8 @@ div#Footer {
  text-align:left;
  padding:2px
 }
+li .handle {
+  font-size: 12px;
+  cursor: move;
+  
+}

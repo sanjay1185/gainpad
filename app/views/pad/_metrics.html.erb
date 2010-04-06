@@ -1,13 +1,9 @@
-<table>
-<%if !@pad.nil?%>
-
-  <%for metric in @pad.metrics%>
-  <tr><td><%=metric.title%></td></tr>
-<%end%>
-<%end%>
-
-<%for met in @metrics%>
-  <tr><td><%=met.title%></td><td><%=link_to "delete"%></td></tr>
-<%end%>
-
-</table>
+<ul id="metrics">
+<% for metric in @metrics %>
+  <% content_tag_for :li, metric do %>
+    <span class="handle">
+    <%= metric.title %></span>
+  <% end %>
+<% end %>
+</ul>
+<%= sortable_element("metrics", :url => sort_metrics_path, :handle => "handle") %>

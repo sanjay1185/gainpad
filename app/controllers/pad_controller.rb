@@ -1,15 +1,16 @@
 class PadController < ApplicationController
   before_filter :find_user
+  
 
  def new
-@metrics=Metric.find(:all,:conditions=>["pad_id is NULL"])
+   @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"],:order=>:position)
    @pad=Pad.new
    @metric=Metric.new
   end
 
   def edit
     @pad=Pad.find(params[:id])
-    @metrics=@pad.metrics
+    @metrics=@pad.metrics.sort{|x,y| x.position <=> y.position }
   end
 
   def create
@@ -22,13 +23,13 @@ class PadController < ApplicationController
      if params[:commit]=="Create Metric"
       @metric=Metric.new(params[:metric])
       @metric.save
-      @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"])
+      @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"],:order=>:position)
       render :action=>"new"
      elsif params[:commit]=="Create Pad"
        @pad=Pad.new(params[:pad])
        @pad.user=current_user
        @pad.save
-       @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"])
+       @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"],:order=>:position)
        for metric in @metrics
          metric.pad=@pad
          metric.save
@@ -46,4 +47,6 @@ class PadController < ApplicationController
   def find_user
     @user = current_user
   end
+
+ 
 end

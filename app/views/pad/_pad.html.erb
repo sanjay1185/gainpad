@@ -12,7 +12,7 @@
   <div id="metric_list"><%=render :partial=>"metrics"%></div>
   <input id="metric_toggle" type="button" name="Add Metric" value="Add Metric" onClick="toggleMetrics('metric_form');this.style.display='none'"><br>
     <div id="metric_form" style="display:none">
-  <% remote_form_for :metric ,@metric,:url => {:update=>"metric_list", :action => "create",:id=>@pad  } do |e|%>
+  <% remote_form_for :metric ,@metric,:url => {:update=>"metric_list", :action => "update",:id=>@pad  } do |e|%>
   <fieldset style="">
     <p>
       <label for="title">Title<font color="red">*</font></label><br>

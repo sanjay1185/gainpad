@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 map.resources :users
 map.resources :pad
+map.resources :metrics, :collection => { :sort => :post }
+
 map.resources :dashboard
 map.resource :session
 map.resources :users, :member => { :suspend   => :put,
