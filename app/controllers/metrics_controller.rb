@@ -1,7 +1,6 @@
 class MetricsController < ApplicationController
 
   def index
-    p "????????????#{params[:pad_id]}"
      @metrics=Metric.find(:all,:conditions=>["pad_id = ?",params[:pad_id]])
   end
 
@@ -16,9 +15,7 @@ class MetricsController < ApplicationController
 @metric=Metric.find(params[:id])
 #render(:update) do |page|
 #      page.replace_html "metric_#{@metric.id}", :partial => 'form', :object => @metric
-      ## give some effect or flash message
 #    end
-p "?????????????????????//////////////////"
 render :partial=>"form"
   end
 
