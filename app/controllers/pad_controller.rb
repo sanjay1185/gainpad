@@ -3,7 +3,7 @@ class PadController < ApplicationController
   
 
  def new
-   @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"],:order=>:position)
+   @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"]).sort{|x,y| x.position <=> y.position }
    @pad=Pad.new
    @metric=Metric.new
   end

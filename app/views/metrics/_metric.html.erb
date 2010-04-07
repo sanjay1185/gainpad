@@ -1,0 +1,9 @@
+
+<table>
+<tr>
+  <td><%= link_to_remote 'edit',:update=>"metric_#{metric.id}", :url => { :action => 'edit_row',:id=>metric.id}
+%></td>
+  <td><%= metric.title  %></td>
+  
+</tr>
+</table>

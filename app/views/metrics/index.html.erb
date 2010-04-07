@@ -1,0 +1,8 @@
+<%= javascript_include_tag :defaults%>
+<%for metric in @metrics%>
+  <% @row_id = "metric_#{metric.id}" %>
+<div id=<%=@row_id%>>
+   <%= render :partial => 'metric', :locals => {:metric => metric} %>
+</div>
+<%end%>
+
