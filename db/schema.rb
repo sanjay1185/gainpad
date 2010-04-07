@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20100406090052) do
     t.string   "title",                              :null => false
     t.string   "description"
     t.integer  "pad_id"
-    t.string   "data_type",   :default => "Integer"
+    t.string   "data_type",   :default => "Integer", :null => false
     t.string   "prefix"
     t.string   "postfix"
     t.datetime "created_at"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(:version => 20100406090052) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "login"
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
