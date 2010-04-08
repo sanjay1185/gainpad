@@ -1,8 +1,8 @@
 <table cellpadding="5">
 <% for pad in @pads  %>
-<tr><td><%=pad.title%></td><td><%= link_to "Metrics",pad_metrics_path(pad) %></td><td><%=link_to "edit",:action=>"edit",:controller=>"pad",:id=>pad.id%></td></tr>
+<tr><td><%=pad.title%></td><td><%= link_to "Metrics",pad_metrics_path(pad) %></td><td><%=link_to "edit",edit_pad_path(pad)%></td></tr>
 <%end%>
 </table>
 <div>
-<%=link_to "New Pad",{:controller=>"pad",:action=>"new"},{}%>
+<%=link_to "New Pad",{:controller=>"pads",:action=>"new",:id=>@user.id},{}%>
 </div>

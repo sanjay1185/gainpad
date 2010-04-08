@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
   protected
 
   def find_user
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   def delete_previous_metrics

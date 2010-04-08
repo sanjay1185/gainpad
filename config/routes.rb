@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 map.resources :users
-map.resources :pad do |pad|
+map.resources :pads do |pad|
   pad.resources :metrics
 end
 map.resources :metrics, :collection => { :sort => :post }

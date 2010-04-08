@@ -1,10 +1,10 @@
 <div>
-  <h1><%=  %></h1>
   <p>
-  <label for="pad_title"></label><br>
-   <%= f.text_field :pad_title %>
+    <label for="pad_title">Pad Title</label><br>
+    <%= f.text_field :title %><br>
+    <small class="help_text">Example: Small Business Marketing</small>
   </p>
-  <p>
-    <label for="metrics">Metrics</label>
-  </p>
+  <div id="metric_form">
+    <%=render :partial=>"metric"%>
+  </div>
 </div>
