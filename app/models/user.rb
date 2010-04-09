@@ -9,12 +9,12 @@ class User < ActiveRecord::Base
   validates_presence_of     :password_confirmation,      :if => :password_required?
   validates_length_of       :password, :within => 4..40, :if => :password_required?
   validates_confirmation_of :password,                   :if => :password_required?
-#  validates_length_of       :login,    :within => 3..40
+  #  validates_length_of       :login,    :within => 3..40
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_acceptance_of   :terms
   before_save :encrypt_password
-  
+
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :email, :password, :password_confirmation,:terms,:first_name,:last_name
@@ -29,15 +29,15 @@ class User < ActiveRecord::Base
   event :register do
     transitions :from => :passive, :to => :pending, :guard => Proc.new {|u| !(u.crypted_password.blank? && u.password.blank?) }
   end
-  
+
   event :activate do
-    transitions :from => :pending, :to => :active 
+    transitions :from => :pending, :to => :active
   end
-  
+
   event :suspend do
     transitions :from => [:passive, :pending, :active], :to => :suspended
   end
-  
+
   event :delete do
     transitions :from => [:passive, :pending, :active, :suspended], :to => :deleted
   end
@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
   end
 
   def remember_token?
-    remember_token_expires_at && Time.now.utc < remember_token_expires_at 
+    remember_token_expires_at && Time.now.utc < remember_token_expires_at
   end
 
   # These create and unset the fields required for remembering users between browser closes
@@ -99,29 +99,29 @@ class User < ActiveRecord::Base
   end
 
   protected
-    # before filter 
-    def encrypt_password
-      return if password.blank?
-      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--") if new_record?
-      self.crypted_password = encrypt(password)
-    end
-      
-    def password_required?
-      crypted_password.blank? || !password.blank?
-    end
-    
-    def make_activation_code
-      self.deleted_at = nil
-      self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
-    end
-    
-    def do_delete
-      self.deleted_at = Time.now.utc
-    end
+  # before filter
+  def encrypt_password
+    return if password.blank?
+    self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--") if new_record?
+    self.crypted_password = encrypt(password)
+  end
 
-    def do_activate
-      @activated = true
-      self.activated_at = Time.now.utc
-      self.deleted_at = self.activation_code = nil
-    end
+  def password_required?
+    crypted_password.blank? || !password.blank?
+  end
+
+  def make_activation_code
+    self.deleted_at = nil
+    self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+  end
+
+  def do_delete
+    self.deleted_at = Time.now.utc
+  end
+
+  def do_activate
+    @activated = true
+    self.activated_at = Time.now.utc
+    self.deleted_at = self.activation_code = nil
+  end
 end

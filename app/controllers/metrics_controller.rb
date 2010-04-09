@@ -25,21 +25,31 @@ class MetricsController < ApplicationController
   end
 
   def edit
-
     @metric=Metric.find(params[:id])
     if @metric.pad.nil?
       @pad=Pad.new
     else
       @pad=@metric.pad
     end
-
     render :partial=>"pads/metric_form"
   end
 
   def update
-    p "nnnnnnnnnnn update"
     @metric = Metric.find(params[:id])
-    @metric.update_attributes(params[:metric])
+    if @metric.update_attributes(params[:metric])
+      flash[:notice]="Metric updated"
+    else
+      @errors=@metric.errors
+      @msg=[]
+      @msg="There were problems with the following fields:\n<ul>"
+      for error in @metric.errors
+        @msg << "<li>Metric"
+        for err in error
+          @msg <<  " " + err + " "
+        end
+        @msg << "</li></ul>\n"
+      end
+    end
     if @metric.pad.nil?
       @pad=Pad.new
       @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"],:order=>:position).sort{|x,y| x.position <=> y.position }
@@ -47,15 +57,11 @@ class MetricsController < ApplicationController
       @pad=@metric.pad
       @metrics=@pad.metrics.sort{|x,y| x.position <=> y.position }
     end
-    # render :partial=>"pads/metrics"
 
   end
 
   def edit_row
     @metric=Metric.find(params[:id])
-    #render(:update) do |page|
-    #      page.replace_html "metric_#{@metric.id}", :partial => 'form', :object => @metric
-    #    end
     render :partial=>"form"
   end
 

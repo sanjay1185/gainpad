@@ -1,6 +1,6 @@
-<h3>New Pad</h3>
+<h2>New Pad</h2>
 <%form_for @pad do |f|%>
-  <%=error_messages_for :pad%>
+<%=error_messages_for :pad%>
 <%=render :partial=>"pad", :locals=>{:f=>f}%>
 <br>
 <%=f.submit "Create Pad"%>

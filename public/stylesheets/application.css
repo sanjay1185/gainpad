@@ -1,89 +1,110 @@
-body {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
+div#container{
+    margin-left:40px;
+    min-height: 300px
 }
-
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+h2{
+    font-size:medium
+}
 a img {
-  border: none;
+    border: none;
 }
 
 a {
-  color: #0000FF;
+    color: #0000FF;
 }
 
 small.help_text{
     color:gray
 }
 .clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
+    clear: both;
+    height: 0;
+    overflow: hidden;
 }
 
 #flash_notice, #flash_error {
-  padding: 5px 8px;
-  margin: 10px 0;
+    padding: 5px 8px;
+    margin: 10px 0;
 }
 
 #flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
+    background-color: #CFC;
+    border: solid 1px #6C6;
+}
+.errors,.errorExplanation{
+    background-color: #FF9999;
+    border: solid 1px #6C6;
+    padding:5px;
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size: 14px;
+    width:36%
 }
 
+
 #flash_error {
-  background-color: #FCC;
-  border: solid 1px #C66;
+    background-color: #FCC;
+    border: solid 1px #C66;
 }
 
 .field-with-errors {
-  display: inline;
+    display: inline;
 }
 
 #error-explanation {
-  width: 400px;
-  border: 2px solid #CF0000;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
+    width: 400px;
+    border: 2px solid #CF0000;
+    padding: 0px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
 }
 
 #error-explanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: 0;
-  background-color: #c00;
-  color: #fff;
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: 0;
+    background-color: #c00;
+    color: #fff;
 }
 
 #error-explanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 8px;
+    color: #333;
+    margin-bottom: 0;
+    padding: 8px;
 }
 
 #error-explanation ul {
-  margin: 2px 24px;
+    margin: 2px 24px;
 }
 
 #error-explanation ul li {
-  font-size: 12px;
-  list-style: disc;
+    font-size: 12px;
+    list-style: disc;
 }
 div#Footer {
- color:#666666;
- font-size:10px;
- line-height:1.2em;
- text-align:left;
- padding:2px
+
+    margin-top:5px;
+    margin-left:40px;
+    font-size:13px;
+    line-height:3.2em;
+    text-align:center;
+    padding:5px
 }
 li .handle {
-  font-size: 12px;
-  cursor: move;
-  
+    font-size: 12px;
+    cursor: move;
+
 }
 .bold{
     font-weight:bold
+}
+.metrics_field{
+    width:380px
 }

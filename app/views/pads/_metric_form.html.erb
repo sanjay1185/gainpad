@@ -1,42 +1,42 @@
 <%fields_for @pad || @metric.pad do |f|%>
 
-    <% f.fields_for @metric do |e|%>
-      <fieldset style="">
-        <p>
-          <label for="title">Title<font color="red">*</font></label><br>
-          <%= e.text_field :title %><br>
-          <small class="help_text">Example: Twitter</small>
-        </p>
-        <p>
-          <label for="description">Description</label><br>
-          <%= e.text_area :description,:cols=>30,:rows=>5%><br>
-          <small class="help_text">A very short description. Example: Number of new twitter followers</small>
-        </p>
-        <p>
-          <label for="data_type">Data Type<font color="red">*</font></label><br>
-          <%= e.select :data_type, { "Integer" => "Integer", "Float" => "Float"}%><br>
-          <small class="help_text">Type of data that will be entered.</small>
-        </p>
-        <p>
-          <label for="dislay_prefix">Display Prefix</label><br>
-          <%=e.text_field :prefix%><br>
-          <small class="help_text">What should be displayed before the value? Example: $, </small>
-        </p>
-        <p>
-          <label for="dislay_prefix">Display Postfix</label><br>
-          <%=e.text_field :postfix%><br>
-          <small class="help_text">What should be displayed after the value? Example: EUR, hours, items, users</small>
-        </p>
-        <%if  (controller.action_name =="edit" and controller.controller_name=='pads' ) || @pad_edit==true %>
-          <%=button_to_remote "Create Metric", :url => Metric.new(:pad => @pad,:pad_id=>@pad), :update => "metric_form" ,:with => "'metric[title]=' + $('pad_metric_title').value + '&metric[description]=' + $('pad_metric_description').value + '&metric[data_type]=' + $('pad_metric_data_type').value + '&metric[prefix]=' + $('pad_metric_prefix').value + '&metric[postfix]=' + $('pad_metric_postfix').value + '&pad_id=' + #{@pad.id}"%>
-        <%elsif (controller.action_name =="edit" and controller.controller_name=='metrics' )%>
-   
-      <%=button_to_remote "Update Metric", :url=>{:controller=>"metrics",:action =>"update",:id=>@metric},:method=>:put, :with => "'metric[title]=' + $('pad_metric_title').value + '&metric[description]=' + $('pad_metric_description').value + '&metric[data_type]=' + $('pad_metric_data_type').value + '&metric[prefix]=' + $('pad_metric_prefix').value + '&metric[postfix]=' + $('pad_metric_postfix').value"%>
-        <%elsif !@pad.nil? %>
-          <%=button_to_remote "Create Metric", :url => Metric.new(:pad => @pad,:pad_id=>@pad), :update => "metric_form" ,:with => "'metric[title]=' + $('pad_metric_title').value + '&metric[description]=' + $('pad_metric_description').value + '&metric[data_type]=' + $('pad_metric_data_type').value + '&metric[prefix]=' + $('pad_metric_prefix').value + '&metric[postfix]=' + $('pad_metric_postfix').value"%>
-        <%else%>
-          <%=button_to_remote "Create Metric", :url => Metric.new(:pad => @pad), :update => "metric_form" ,:with => "'metric[title]=' + $('nil_class_metric_title').value + '&metric[description]=' + $('nil_class_metric_description').value + '&metric[data_type]=' + $('nil_class_metric_data_type').value + '&metric[prefix]=' + $('nil_class_metric_prefix').value + '&metric[postfix]=' + $('nil_class_metric_postfix').value"%>
-        <%end%>
-      </fieldset>
-    <%end%>
+  <% f.fields_for @metric do |e|%>
+    <fieldset class="metrics_field">
+      <p>
+        <label for="title">Title<font color="red">*</font></label><br>
+        <%= e.text_field :title %><br>
+        <small class="help_text">Example: Twitter</small>
+      </p>
+      <p>
+        <label for="description">Description</label><br>
+        <%= e.text_area :description,:cols=>23,:rows=>5%><br>
+        <small class="help_text">A very short description. Example: Number of new twitter followers</small>
+      </p>
+      <p>
+        <label for="data_type">Data Type<font color="red">*</font></label><br>
+        <%= e.select :data_type, { "Integer Number" => "Integer", "Float Number" => "Float"} %><br>
+        <small class="help_text">Type of data that will be entered.</small>
+      </p>
+      <p>
+        <label for="dislay_prefix">Display Prefix</label><br>
+        <%=e.text_field :prefix%><br>
+        <small class="help_text">What should be displayed before the value? Example: $, </small>
+      </p>
+      <p>
+        <label for="dislay_prefix">Display Postfix</label><br>
+        <%=e.text_field :postfix%><br>
+        <small class="help_text">What should be displayed after the value? Example: EUR, hours, items, users</small>
+      </p>
+      <%if  (controller.action_name =="edit" and controller.controller_name=='pads' ) || @pad_edit==true %>
+        <%=button_to_remote "Create Metric", :url => Metric.new(:pad => @pad,:pad_id=>@pad), :update => "metric_form" ,:with => "'metric[title]=' + $('pad_metric_title').value + '&metric[description]=' + $('pad_metric_description').value + '&metric[data_type]=' + $('pad_metric_data_type').value + '&metric[prefix]=' + $('pad_metric_prefix').value + '&metric[postfix]=' + $('pad_metric_postfix').value + '&pad_id=' + #{@pad.id}"%>
+      <%elsif (controller.action_name =="edit" and controller.controller_name=='metrics' )%>
+        <%=button_to_remote "Update Metric", :url=>{:controller=>"metrics",:action =>"update",:id=>@metric},:method=>:put, :with => "'metric[title]=' + $('pad_metric_title').value + '&metric[description]=' + $('pad_metric_description').value + '&metric[data_type]=' + $('pad_metric_data_type').value + '&metric[prefix]=' + $('pad_metric_prefix').value + '&metric[postfix]=' + $('pad_metric_postfix').value"%>
+        <%= link_to_function "Cancel","$(this).up('metric_field').hide()" %>
+      <%elsif !@pad.nil? %>
+        <%=button_to_remote "Create Metric", :url => Metric.new(:pad => @pad,:pad_id=>@pad), :update => "metric_form" ,:with => "'metric[title]=' + $('pad_metric_title').value + '&metric[description]=' + $('pad_metric_description').value + '&metric[data_type]=' + $('pad_metric_data_type').value + '&metric[prefix]=' + $('pad_metric_prefix').value + '&metric[postfix]=' + $('pad_metric_postfix').value"%>
+      <%else%>
+        <%=button_to_remote "Create Metric", :url => Metric.new(:pad => @pad), :update => "metric_form" ,:with => "'metric[title]=' + $('nil_class_metric_title').value + '&metric[description]=' + $('nil_class_metric_description').value + '&metric[data_type]=' + $('nil_class_metric_data_type').value + '&metric[prefix]=' + $('nil_class_metric_prefix').value + '&metric[postfix]=' + $('nil_class_metric_postfix').value"%>
+      <%end%>
+    </fieldset>
   <%end%>
+<%end%>
