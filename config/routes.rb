@@ -3,6 +3,7 @@ map.resources :users
 map.resources :pads do |pad|
   pad.resources :metrics
 end
+map.resources :metrics,:member=>{:edit=>:put}
 map.resources :metrics, :collection => { :sort => :post }
 
 map.resources :dashboard

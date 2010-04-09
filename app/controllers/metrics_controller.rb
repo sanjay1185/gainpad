@@ -16,6 +16,7 @@ class MetricsController < ApplicationController
       
     end
     if @pad
+      @pad_edit=true
       @metric.pad=@pad
       @metric.save
       @metrics=@pad.metrics
@@ -26,6 +27,14 @@ class MetricsController < ApplicationController
     render :partial => 'pads/metric'
   end
 
+  def edit
+    p "nnnnnnnnnnnnnnnnnnnnn"
+    @metric=Metric.find(params[:id])
+    @pad=@metric.pad
+    @metrics=@pad.metrics
+    render :partial=>"metric"
+  end
+
   def edit_row
     @metric=Metric.find(params[:id])
     #render(:update) do |page|
@@ -33,8 +42,13 @@ class MetricsController < ApplicationController
     #    end
     render :partial=>"form"
   end
+
   def destroy
-    Metric.find(params[:id]).destroy
+    @metric=Metric.find(params[:id])
+    @metrics=Metric.find(:all,:conditions=>["pad_id = ?",@metric.pad_id])
+    @metrics.delete @metric
+    @metric.destroy
+    render :partial=>"pads/metrics"
   end
 
   def sort
@@ -43,7 +57,6 @@ class MetricsController < ApplicationController
     end
     render :nothing => true
   end
-
 
   protected
   def find_user
