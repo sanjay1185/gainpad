@@ -7,6 +7,7 @@ class PadsController < ApplicationController
     @metrics.each do |metric|
       metric.destroy
     end
+    @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"],:order=>:position)
     @pad = Pad.new
     @metric = Metric.new
   end

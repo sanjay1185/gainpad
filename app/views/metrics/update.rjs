@@ -1,0 +1,3 @@
+page.replace_html 'metrics_list', :partial =>'pads/metrics',:object=>@metrics
+#page['metrics_list'].replace :partial => 'pads/metrics'
+page.replace_html 'metric_edit',:partial =>'pads/metric_toggle'

@@ -1,10 +1,12 @@
 <ul id="metrics">
-<% for metric in @metrics %>
-  <% content_tag_for :li, metric do %>
-    <span class="handle"><%=link_to_remote(image_tag('delete.png') ,:url=>{:controller=>"metrics",:action =>"destroy",:id=>metric},:update => "metrics_list",:method=>:delete)%>
-                         <%= link_to_remote(image_tag("edit.png"),:url=>{:controller=>"metrics",:action =>"edit",:id=>metric},:update => "ajax_metric_form",:method=>:put) %>
-    <%= metric.title %></span>
+  <% for metric in @metrics %>
+    <% content_tag_for :li, metric do %>
+      <span class="handle">
+        <%=link_to_remote(image_tag('delete.png') ,:url=>{:controller=>"metrics",:action =>"destroy",:id=>metric},:update => "metrics_list",:method=>:delete,:loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');Element.hide('forgot_password');")%>
+        <%= link_to_remote(image_tag("edit.png"),:url=>{:controller=>"metrics",:action =>"edit",:id=>metric},:update => "metric_edit",:method=>:put,:loading=>"Element.show('spinner');",:complete=>"Element.hide('spinner');Element.hide('forgot_password');") %>
+        <%= metric.title %><%= image_tag "spinner.gif", :id => "spinner", :style => 'display:none;', :bgcolor => '#EFF9FF' %>
+      </span>
+    <% end %>
   <% end %>
-<% end %>
 </ul>
 <%= sortable_element("metrics", :url => sort_metrics_path, :handle => "handle") %>

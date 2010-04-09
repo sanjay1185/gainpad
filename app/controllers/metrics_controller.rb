@@ -5,16 +5,13 @@ class MetricsController < ApplicationController
   end
 
   def new
-
+    @metric=@metric.new
   end
 
   def create
     @pad=Pad.find(params[:pad_id]) if params[:pad_id]
     @metric = Metric.new(params[:metric])
-    if @metric.save
-      flash[:message] ="Metric has been created sucessfully."
-      
-    end
+    flash[:message] ="Metric has been created sucessfully." if @metric.save
     if @pad
       @pad_edit=true
       @metric.pad=@pad
@@ -28,11 +25,30 @@ class MetricsController < ApplicationController
   end
 
   def edit
-    p "nnnnnnnnnnnnnnnnnnnnn"
+
     @metric=Metric.find(params[:id])
-    @pad=@metric.pad
-    @metrics=@pad.metrics
-    render :partial=>"metric"
+    if @metric.pad.nil?
+      @pad=Pad.new
+    else
+      @pad=@metric.pad
+    end
+
+    render :partial=>"pads/metric_form"
+  end
+
+  def update
+    p "nnnnnnnnnnn update"
+    @metric = Metric.find(params[:id])
+    @metric.update_attributes(params[:metric])
+    if @metric.pad.nil?
+      @pad=Pad.new
+      @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"],:order=>:position).sort{|x,y| x.position <=> y.position }
+    else
+      @pad=@metric.pad
+      @metrics=@pad.metrics.sort{|x,y| x.position <=> y.position }
+    end
+    # render :partial=>"pads/metrics"
+
   end
 
   def edit_row
