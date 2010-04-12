@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag 'application' %>
     <%= yield(:head) %>
   </head>
-  <div style="position:absolute;top:20px;left:300px;">
+  <div style="margin-top:20px;margin-left:300px;">
     <%if current_user %>
       <%= link_to "DashBoard",:controller=>"dashboard",:action=>"index"%> |
       <%= link_to "..." %>

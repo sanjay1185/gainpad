@@ -31,7 +31,7 @@ class MetricsController < ApplicationController
     else
       @pad=@metric.pad
     end
-    render :partial=>"pads/metric_form"
+#    render :partial=>"pads/metric_form"
   end
 
   def update
@@ -50,6 +50,7 @@ class MetricsController < ApplicationController
         @msg << "</li></ul>\n"
       end
     end
+    p " >>>>>>>>>>>>>>>>>>>>>#{@metric.errors.size}"
     if @metric.pad.nil?
       @pad=Pad.new
       @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"],:order=>:position).sort{|x,y| x.position <=> y.position }

@@ -2,6 +2,8 @@ if @errors
   page.show 'errors'
   page.replace_html 'errors',"#{@msg}"
 else
+  page.hide 'errors'
+  page.hide 'errorExplanation' if @metric.errors.size == 0
   page.replace_html 'metrics_list', :partial =>'pads/metrics',:object=>@metrics
   page.replace_html 'metric_edit',:partial =>'pads/metric_toggle'
 end
