@@ -36,6 +36,7 @@ class PadsController < ApplicationController
         end
         redirect_to(:action=>"index",:controller=>"dashboard",:id=>current_user)
       else
+        flash[:notice]=nil
         @errors=true
         render :action=>"new"
       end

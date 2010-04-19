@@ -3,5 +3,5 @@
  <%=error_messages_for :pad%>
   <%=render :partial=>"pad", :locals=>{:f=>f}%>
   <br>
-  <%=f.submit "Update Pad"%>&nbsp;<%= button_to "Delete",url_for(:action=>"destroy",:id=>@pad.id),:method=>:delete,:confirm=>"Are You Sure?" %>
+  <%=f.submit "Update Pad"%>&nbsp;<%= link_to "Delete",url_for(:action=>"destroy",:id=>@pad.id),:method=>:delete,:confirm=>"Are You Sure?" %>
 <%end%>

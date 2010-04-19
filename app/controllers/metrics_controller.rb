@@ -50,7 +50,7 @@ class MetricsController < ApplicationController
         @msg << "</li></ul>\n"
       end
     end
-    p " >>>>>>>>>>>>>>>>>>>>>#{@metric.errors.size}"
+    
     if @metric.pad.nil?
       @pad=Pad.new
       @metrics=Metric.find(:all,:conditions=>["pad_id is NULL"],:order=>:position).sort{|x,y| x.position <=> y.position }
