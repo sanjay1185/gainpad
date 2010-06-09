@@ -1,1 +1,0 @@
- page.replace_html 'metric_edit',:partial=>"pads/metric_form"

@@ -1,4 +1,0 @@
-if @errors
-  page.show 'errors'
-  page.replace_html 'errors',"#{@msg}"
-end
