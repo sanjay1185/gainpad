@@ -1,0 +1,10 @@
+<div>
+  <p>
+    <label for="pad_title" class="bold">Pad Title</label><br>
+    <%= f.text_field :title, :size=>63 %><br>
+    <small class="help_text">Example: Small Business Marketing</small>
+  </p>
+  <div id="metric_form">
+    <%=render :partial=>"metric"%>
+  </div>
+</div>

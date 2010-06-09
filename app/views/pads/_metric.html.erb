@@ -1,0 +1,16 @@
+<%=  flash[:message]%>  
+<p>
+  <label for="metrics"><b>Metrics</b></label>
+</p>
+<div id="metrics_list">
+  <%=render :partial=>"pads/metrics"%>
+</div>
+<%=error_messages_for :metric%>
+<div id="errors" class='errors' style="display:none" ></div>
+<div id="metric_edit">
+ <input id="metric_toggle" type="button" name="Add Metric" value="Add Metric" onClick="toggleMetrics('inside_form');this.style.display='none'"><br>
+</div>
+
+<div id="inside_form"  style="display:none">
+ <%=render :partial=>"pads/metric_form"%>
+</div>
